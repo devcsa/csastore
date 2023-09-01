@@ -85,7 +85,7 @@ function desenharProdutoNoCarrinho(idProduto) {
         ${produto.nome}
       </p>
       <p class="text-slate-400 text-xs">Tamanho: M</p>
-      <p class="text-green-700 text-lg">$${produto.preco}</p>
+      <p class="text-green-700 text-lg">${produto.preco.toLocaleString("pt-br", { style: "currency", currency: "brl" })}</p>
     </div>
     <div class='flex text-slate-950 items-end absolute bottom-0 right-2 text-lg'>
         <button id='decrementar-produto-${produto.id}'>-</button>
@@ -125,7 +125,7 @@ export function adicionarAoCarrinho(idProduto) {
    atualizarPrecoCarrinho();
 }
 
-// Atualizar valor total do pedido
+// Atualizar Total do Pedido no Carrinho
 export function atualizarPrecoCarrinho() {
    const precoCarrinho = document.getElementById("preco-total");
    let precoTotalCarrinho = 0;
@@ -134,5 +134,5 @@ export function atualizarPrecoCarrinho() {
       precoTotalCarrinho += catalogo.find((p) => p.id === idProdutoNoCarrinho).preco * idsProdutoCarrinhoComQuantidade[idProdutoNoCarrinho];
    }
 
-   precoCarrinho.innerText = `Total: $${precoTotalCarrinho}`;
+   precoCarrinho.innerText = `Total: ${precoTotalCarrinho.toLocaleString("pt-br", { style: "currency", currency: "brl" })}`;
 }
